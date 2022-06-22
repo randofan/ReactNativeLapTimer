@@ -1,113 +1,74 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
-import React from 'react';
+import * as React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import HomeScreen from './Screens/HomeScreen';
+import SwimmerScreen from './Screens/SwimmerScreen';
+import ResultScreen from './Screens/ResultScreen';
+import Settings from './Screens/Settings';
+import Privacy from './Screens/Privacy';
+import SwimmerData from './SwimmerData';
+import Swimmer from './Swimmer';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+  DefaultTheme as PaperDefaultTheme,
+  Provider as PaperProvider,
+} from 'react-native-paper';
+import NavBar from './Screens/NavBar';
+import {Theme} from 'react-native-paper/lib/typescript/types';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const Stack = createNativeStackNavigator();
 
-const Section: React.FC<{title: string}> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+const theme: Theme = {
+  ...PaperDefaultTheme,
+  mode: 'exact',
+  colors: {
+    ...PaperDefaultTheme.colors,
+    primary: '#546f7a',
+  },
+  fonts: {
+    regular: {
+      fontFamily: 'proxima nova',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'proxima nova',
+      fontWeight: 'normal',
+    },
+    light: {
+      fontFamily: 'proxima nova',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'proxima nova',
+      fontWeight: 'normal',
+    },
+  },
 };
+
+// TODO app logo https://medium.com/@ansonmathew/app-icon-in-react-native-ios-and-android-6165757e3fdb
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const [swimmers, setSwimmers] = React.useState<Swimmer[]>([]);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <PaperProvider theme={theme}>
+      <SwimmerData.Provider value={{swimmers, setSwimmers}}>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Lap Timer"
+            screenOptions={{
+              header: props => <NavBar {...props} />,
+              orientation: 'portrait_up',
+            }}>
+            <Stack.Screen name="Lap Timer" component={HomeScreen} />
+            <Stack.Screen name="Stopwatch" component={SwimmerScreen} />
+            <Stack.Screen name="Results" component={ResultScreen} />
+            <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name="Privacy" component={Privacy} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SwimmerData.Provider>
+    </PaperProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
