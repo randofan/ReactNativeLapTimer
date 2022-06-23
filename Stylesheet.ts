@@ -11,14 +11,14 @@ const useStyle = () => {
             minWidth: '80%'
         },
         hamburger: {
-            margin: 10,
+            margin: window.width * 0.05,
             minWidth: '80%'
         },
         title: {
-            fontSize: 30 / window.fontScale
+            fontSize: 60 / window.fontScale
         },
         subtitle: {
-            fontSize: 20 / window.fontScale
+            fontSize: 30 / window.fontScale
         }
     })
     return {styles}

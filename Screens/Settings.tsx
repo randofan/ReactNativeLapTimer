@@ -8,7 +8,7 @@ const Settings = ({ navigation }) => {
     const {styles} = useStyle()
     return (
         <View style={[styles.hamburger]}>
-            <Title>Settings</Title>
+            <Title style={[styles.subtitle]}>Settings</Title>
         </View>
     )
 }

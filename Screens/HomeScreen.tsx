@@ -4,20 +4,23 @@ import {Picker} from '@react-native-picker/picker';
 import SwimmerData from "../SwimmerData";
 import Swimmer from "../Swimmer";
 import { Button } from 'react-native-paper';
+import useStyle from '../Stylesheet';
 
 // @ts-ignore
 const HomeScreen = ({ navigation }) => {
 
     const [numberOfSwimmers, setNumberOfSwimmers] = useState('Number of Participants')
     const myContext: any = useContext(SwimmerData)
+    const {styles} = useStyle()
 
     const participants: number[] = [...Array(8)]
 
     return (
         <View style={{ flex: 1, flexDirection: "column", justifyContent: "center", alignItems: 'center', padding: 50}}>
-            <Text style={{fontSize: 50, color: 'black'}}>Lap Timer</Text>
+            <Text style={{...styles.title, color: 'black'}}>Lap Timer</Text>
             <Picker
-                style={{alignSelf: 'stretch'}}
+                style={{alignSelf: 'stretch', color:'black'}}
+                dropdownIconColor='black'
                 selectedValue={numberOfSwimmers}
                 onValueChange={(itemValue: string, itemIndex: number) => {
                     if (itemIndex !== 0) setNumberOfSwimmers(itemValue)

@@ -19,10 +19,11 @@ const Stack = createNativeStackNavigator();
 
 const theme: Theme = {
   ...PaperDefaultTheme,
-  mode: 'exact',
+  dark: false,
   colors: {
     ...PaperDefaultTheme.colors,
     primary: '#546f7a',
+    accent: 'black'
   },
   fonts: {
     regular: {

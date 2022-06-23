@@ -29,7 +29,7 @@ const Result = (props: any) => {
                     </DataTable.Header>
                     {props.swimmer.laps.map((lap: [number, number], index: number) => {
                         return (
-                            <DataTable.Row>
+                            <DataTable.Row key={index}>
                                 <DataTable.Cell>{index+1}</DataTable.Cell>
                                 <DataTable.Cell>{ChangeFormat(lap[0])}</DataTable.Cell>
                                 <DataTable.Cell>{ChangeFormat(lap[1])}</DataTable.Cell>

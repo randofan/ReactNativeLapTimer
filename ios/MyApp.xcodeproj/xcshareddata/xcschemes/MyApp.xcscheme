@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "MyApp.app"
+               BuildableName = "LapTimer.app"
                BlueprintName = "MyApp"
                ReferencedContainer = "container:MyApp.xcodeproj">
             </BuildableReference>
