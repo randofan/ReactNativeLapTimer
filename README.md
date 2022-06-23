@@ -5,7 +5,6 @@
 3. press run arrow in Android Studio
 
 ##TODO
-2. remake android icon
 4. make ios icon
 5. make settings
 6. make privacy
